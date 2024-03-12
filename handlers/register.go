@@ -1,5 +1,3 @@
-// В вашем файле handlers.go
-
 package handlers
 
 import (
@@ -38,7 +36,7 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		user := utils.User{
-			Role:     "Student", // Роль по умолчанию, вы можете изменить по своему усмотрению
+			Role:     "Student",
 			Username: username,
 			Password: password,
 			FName:    fName,

@@ -1,5 +1,3 @@
-// В вашем файле handlers/handlers.go
-
 package handlers
 
 import (
@@ -17,11 +15,9 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == http.MethodPost {
-		// Обработка входа
 		username := r.FormValue("username")
 		password := r.FormValue("password")
 
-		// Проверка логина и пароля
 		validUser, _ := utils.ValidateUser(username, password)
 
 		if validUser {

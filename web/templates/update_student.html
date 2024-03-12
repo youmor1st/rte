@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обновление данных ученика</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Обновление данных ученика</h2>
+<form action="/admin/update-student" method="POST">
+    <input type="hidden" name="student_id" value="{{.Student.ID}}">
+    <div>
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" value="{{.Student.Username}}">
+    </div>
+    <div>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" placeholder="Введите пароль если хотите изменить">
+    </div>
+    <div>
+        <label for="firstName">Имя:</label>
+        <input type="text" id="firstName" name="firstName" value="{{.Student.FName}}">
+    </div>
+    <div>
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" name="lastName" value="{{.Student.SName}}">
+    </div>
+    <div>
+        <label for="classID">ID класса:</label>
+        <input type="text" id="classID" name="classID" value="{{.Student.ClassID}}">
+    </div>
+    <div>
+        <label for="points">Очки:</label>
+        <input type="text" id="points" name="points" value="{{.Student.Points}}">
+    </div>
+    <button type="submit">Обновить данные</button>
+</form>
+
+<!-- Добавляем кнопку для удаления ученика -->
+<form action="/admin/delete-student" method="POST">
+    <input type="hidden" name="student_id" value="{{.Student.ID}}">
+</form>
+</body>
+</html>

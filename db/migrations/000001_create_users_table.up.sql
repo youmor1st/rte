@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS points_rules (
                                             rule_type VARCHAR(10) CHECK (rule_type IN ('positive', 'negative'))
 );
 
-CREATE TABLE IF NOT EXISTS points (
+CREATE TABLE IF NOT EXISTS points ( 
                                       id SERIAL PRIMARY KEY,
                                       user_id INT REFERENCES users(id),
                                       awarded_by INT REFERENCES users(id),

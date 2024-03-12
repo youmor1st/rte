@@ -84,16 +84,13 @@ func DeleteStudentHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Получаем список учеников для выбранного класса
 	students, err := utils.GetStudentsByClassID(classIDInt)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	// Проверяем метод запроса
 	if r.Method == http.MethodPost {
-		// Получаем идентификатор ученика для удаления
 		studentID := r.FormValue("student_id")
 		studentIDInt, err := strconv.Atoi(studentID)
 		if err != nil {
@@ -101,19 +98,16 @@ func DeleteStudentHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		// Удаляем ученика из базы данных
 		err = utils.DeleteUser(studentIDInt)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		// Перенаправляем пользователя на другую страницу или отображаем сообщение об успешном удалении
 		http.Redirect(w, r, "/admin/delete-student?class_id="+classID, http.StatusSeeOther)
 		return
 	}
 
-	// Передаем данные в шаблон
 	data := struct {
 		ClassID  int
 		Students []utils.User

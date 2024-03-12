@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список пользователей</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            width: calc(33.33% - 20px);
+        }
+
+        li:hover {
+            background-color: #f9f9f9;
+        }
+
+        li h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .user-info {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<h2>Список пользователей</h2>
+<ul>
+    {{range .}}
+    <li>
+        <h3>{{.Username}}</h3>
+        <div class="user-info">
+            <p>ID: {{.ID}}</p>
+            <p>Роль: {{.Role}}</p>
+            <p>Имя: {{.FName}}</p>
+            <p>Фамилия: {{.SName}}</p>
+            <p>Класс: {{.ClassName}}</p>
+        </div>
+    </li>
+    {{end}}
+</ul>
+</body>
+</html>
