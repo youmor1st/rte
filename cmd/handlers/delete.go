@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"finalgo/utils"
+	utils2 "finalgo/pkg/models"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -46,14 +46,14 @@ func DeleteSelectClassHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	classes, err := utils.GetClasses()
+	classes, err := utils2.GetClasses()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	data := struct {
-		Classes []utils.Class
+		Classes []utils2.Class
 	}{
 		Classes: classes,
 	}
@@ -84,7 +84,7 @@ func DeleteStudentHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	students, err := utils.GetStudentsByClassID(classIDInt)
+	students, err := utils2.GetStudentsByClassID(classIDInt)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -98,7 +98,7 @@ func DeleteStudentHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		err = utils.DeleteUser(studentIDInt)
+		err = utils2.DeleteUser(studentIDInt)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -110,7 +110,7 @@ func DeleteStudentHandler(w http.ResponseWriter, r *http.Request) {
 
 	data := struct {
 		ClassID  int
-		Students []utils.User
+		Students []utils2.User
 	}{
 		ClassID:  classIDInt,
 		Students: students,

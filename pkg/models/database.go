@@ -1,10 +1,10 @@
-// В файле utils/utils.go
+// В файле models/models.go
 
-package utils
+package models
 
 import (
 	"context"
-	"finalgo/config"
+	"finalgo/pkg/config"
 	"fmt"
 	"github.com/jackc/pgx/v4"
 )

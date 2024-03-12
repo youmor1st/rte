@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"finalgo/utils"
+	"finalgo/pkg/models"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -18,7 +18,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		username := r.FormValue("username")
 		password := r.FormValue("password")
 
-		validUser, _ := utils.ValidateUser(username, password)
+		validUser, _ := models.ValidateUser(username, password)
 
 		if validUser {
 			fmt.Printf("Login successful for user: %s\n", username)

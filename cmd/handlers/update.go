@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"finalgo/utils"
+	utils2 "finalgo/pkg/models"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -20,14 +20,14 @@ func UpdateSelectHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	classes, err := utils.GetClasses()
+	classes, err := utils2.GetClasses()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	data := struct {
-		Classes []utils.Class
+		Classes []utils2.Class
 	}{
 		Classes: classes,
 	}
@@ -58,7 +58,7 @@ func UpdateSelectStudentHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Получаем учеников из базы данных для данного класса
-	students, err := utils.GetStudentsByClassID(classIDInt)
+	students, err := utils2.GetStudentsByClassID(classIDInt)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -66,7 +66,7 @@ func UpdateSelectStudentHandler(w http.ResponseWriter, r *http.Request) {
 
 	data := struct {
 		ClassID  string
-		Students []utils.User
+		Students []utils2.User
 	}{
 		ClassID:  classID,
 		Students: students,
@@ -99,7 +99,7 @@ func UpdateStudentHandler(w http.ResponseWriter, r *http.Request) {
 		classIDInt, _ := strconv.Atoi(classID)
 		pointsInt, _ := strconv.Atoi(points)
 
-		updatedStudent := utils.User{
+		updatedStudent := utils2.User{
 			ID:       studentIDInt,
 			Username: username,
 			Password: password,
@@ -109,7 +109,7 @@ func UpdateStudentHandler(w http.ResponseWriter, r *http.Request) {
 			Points:   pointsInt,
 		}
 
-		err := utils.UpdateUser(updatedStudent)
+		err := utils2.UpdateUser(updatedStudent)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
@@ -131,14 +131,14 @@ func UpdateStudentHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	student, err := utils.GetStudentByID(studentIDInt)
+	student, err := utils2.GetStudentByID(studentIDInt)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	data := struct {
-		Student utils.User
+		Student utils2.User
 	}{
 		Student: student,
 	}

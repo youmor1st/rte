@@ -1,14 +1,14 @@
 package main
 
 import (
-	"finalgo/routes"
-	"finalgo/utils"
+	"finalgo/cmd/routes"
+	"finalgo/pkg/models"
 	"fmt"
 	"net/http"
 )
 
 func main() {
-	err := utils.InitDB()
+	err := models.InitDB()
 	if err != nil {
 		fmt.Println("Failed to connect to the database:", err)
 		return

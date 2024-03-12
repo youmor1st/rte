@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"finalgo/utils"
+	utils2 "finalgo/pkg/models"
 	"fmt"
 	"net/http"
 	"text/template"
@@ -29,13 +29,13 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 		sName := r.FormValue("s_name")
 		className := r.FormValue("class_name")
 
-		classID, err := utils.GetOrCreateClass(className)
+		classID, err := utils2.GetOrCreateClass(className)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		user := utils.User{
+		user := utils2.User{
 			Role:     "Student",
 			Username: username,
 			Password: password,
@@ -45,7 +45,7 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 			Points:   100,
 		}
 
-		err = utils.CreateUser(user)
+		err = utils2.CreateUser(user)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

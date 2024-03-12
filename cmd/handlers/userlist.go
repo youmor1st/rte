@@ -1,13 +1,13 @@
 package handlers
 
 import (
-	"finalgo/utils"
+	"finalgo/pkg/models"
 	"html/template"
 	"net/http"
 )
 
 func UsersHandler(w http.ResponseWriter, r *http.Request) {
-	usersWithClass, err := utils.GetAllUsersWithClass()
+	usersWithClass, err := models.GetAllUsersWithClass()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
